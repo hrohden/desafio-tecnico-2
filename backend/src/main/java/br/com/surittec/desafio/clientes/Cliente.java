@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class Cliente {
 
     @Id
-    private int id;
+    private Integer id;
     private String nome;
     private String endereco;
     private String email;
