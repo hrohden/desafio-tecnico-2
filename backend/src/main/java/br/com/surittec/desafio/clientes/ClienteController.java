@@ -1,8 +1,11 @@
 package br.com.surittec.desafio.clientes;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -19,7 +22,7 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public Cliente consultarPorId(@PathVariable("id") Integer id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
