@@ -4,8 +4,6 @@ import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -43,8 +41,9 @@ public class Cliente {
     @NotNull
     private String uf;
 
-    @Email
-    private String email;
+    @OneToMany(cascade = CascadeType.ALL)
+    @Size(min = 1)
+    private List<Email> emails = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @Size(min = 1)
