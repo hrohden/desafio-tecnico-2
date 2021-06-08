@@ -15,7 +15,10 @@ public class Cliente {
     private Integer id;
     private String nome;
     private String cpf;
-    private String endereco;
+    private String logradouro;
+    private String bairro;
+    private String cidade;
+    private String uf;
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
