@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class AuthenticationController {
     @PostMapping
     public ResponseEntity<Token> authenticate(@RequestBody final LoginForm loginForm) {
         try {
-            Authentication authentication = authenticationManager.authenticate(loginForm.getAuthentication());
+            Authentication authentication = authenticationManager.authenticate(loginForm.converter());
             String token = tokenService.generateToken(authentication);
             return ResponseEntity.ok(new Token("Bearer", token));
         } catch (AuthenticationException e) {
