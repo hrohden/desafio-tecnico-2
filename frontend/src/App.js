@@ -1,9 +1,13 @@
-import logo from './logo.svg';
 import './App.css';
+import ListaClientes from './ListaClientes';
 
 function App() {
   return (
-    <div>Aplicação</div>
+    <div>
+      <h1>Aplicação</h1>
+      <hr />
+      <ListaClientes />
+    </div>
   );
 }
 
