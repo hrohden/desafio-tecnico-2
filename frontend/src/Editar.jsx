@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from "./Form";
 
 export default class Editar extends Component {
   constructor(props) {
@@ -39,7 +40,12 @@ export default class Editar extends Component {
     return (
       <div>
         <h1>Editar...</h1>
-        {this.state.cliente && <h2>{this.state.cliente.nome}</h2>}
+        {this.state.isLoaded && (
+          <div>
+            <h2>{this.state.cliente.id}</h2>
+            <Form cliente={this.state.cliente} />
+          </div>
+        )}
       </div>
     );
   }

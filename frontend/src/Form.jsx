@@ -5,15 +5,15 @@ export default class Form extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      cliente: {
-        nome: this.props.cliente.nome,
-      },
+      cliente: this.props.cliente,
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log(this.state.cliente.id);
     const body = {
+      id: this.state.cliente.id,
       nome: this.state.cliente.nome,
       cpf: "00000000000",
       cep: "99999999",
@@ -73,7 +73,7 @@ export default class Form extends Component {
               type="text"
               value={this.state.cliente.nome}
               onChange={(event) => {
-                this.setState({ cliente: { nome: event.target.value } });
+                this.setState({ cliente: { ...this.state.cliente, nome: event.target.value } });
               }}
             />
           </label>
