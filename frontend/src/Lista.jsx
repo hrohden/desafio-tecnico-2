@@ -41,7 +41,11 @@ export default class Lista extends Component {
     return (
       <div>
         <div>Lista de clientes...</div>
-        {this.state.isLoaded && <p>{this.state.items[0].nome}</p>}
+        {this.state.isLoaded && (<ul>
+          {this.state.items.map((item) => (
+            <li>{ item.nome } ({ item.id })</li>
+          ))}
+        </ul>)}
       </div>
     );
   }
