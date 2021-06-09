@@ -1,13 +1,9 @@
 import "./App.css";
 import Lista from "./Lista";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Adicionar from "./Adicionar";
 import Home from "./Home";
+import Editar from "./Editar";
 
 function App() {
   return (
@@ -36,6 +32,7 @@ function App() {
           <Route path="/adicionar">
             <Adicionar />
           </Route>
+          <Route exact path="/editar/:id" render={(props) => <Editar {...props} /> } />
           <Route path="/">
             <Home />
           </Route>

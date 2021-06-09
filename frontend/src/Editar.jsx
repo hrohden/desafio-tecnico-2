@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
-export default class Lista extends Component {
+export default class Editar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      items: [],
+      cliente: {},
     };
   }
-
   componentDidMount() {
-    fetch("http://localhost:3000/api/clientes", {
+    const id = this.props.match.params.id;
+    fetch("http://localhost:3000/api/clientes/" + id, {
       headers: new Headers({
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBdXRlbnRpY2HDp8OjbyIsImlhdCI6MTYyMzI2MDgwMiwiZXhwIjoxNjIzMzQ3MjAyLCJzdWIiOiJhZG1pbiJ9.2NKHtgmfjn368BiZfaPKFD6I8NQwMd4jfOdHFBGNOMU",
@@ -23,7 +20,7 @@ export default class Lista extends Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result,
+            cliente: result,
           });
         },
         // Nota: É importante lidar com os erros aqui
@@ -41,12 +38,8 @@ export default class Lista extends Component {
   render() {
     return (
       <div>
-        <div>Lista de clientes...</div>
-        {this.state.isLoaded && (<ul>
-          {this.state.items.map((item) => (
-            <li key={item.id}>{ item.nome } ({ item.id }) - <Link to={"/editar/" + item.id}>Editar</Link></li>
-          ))}
-        </ul>)}
+        <h1>Editar...</h1>
+        {this.state.cliente && <h2>{this.state.cliente.nome}</h2>}
       </div>
     );
   }
