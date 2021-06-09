@@ -9,12 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Data;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements UserDetails {
 
     private static final long serialVersionUID = -8563672933753077644L;
