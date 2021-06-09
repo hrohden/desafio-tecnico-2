@@ -6,14 +6,13 @@ export default class Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       cliente: {
-        nome: "Meu cliente (form)",
+        nome: this.props.cliente.nome,
       },
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("enviou...");
     const body = {
       nome: this.state.cliente.nome,
       cpf: "00000000000",
