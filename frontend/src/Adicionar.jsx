@@ -3,14 +3,20 @@ import React, { Component } from "react";
 export default class Adicionar extends Component {
   constructor(props) {
     super(props);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      cliente: {
+        nome: "Meu cliente (form)",
+      },
+    };
   }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log("enviou...");
     const body = {
-      nome: "Meu teste",
+      nome: this.state.cliente.nome,
       cpf: "00000000000",
       cep: "99999999",
       logradouro: "Teste",
@@ -59,11 +65,29 @@ export default class Adicionar extends Component {
       );
   }
 
+  handleChange(event) {
+    this.setState({ cliente: { nome: event.target.value } });
+  }
+
   render() {
     return (
       <div>
         <h1>Adicionar</h1>
-        <button onClick={this.handleSubmit}>Adicionar cliente</button>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor="nome">
+              Nome:
+              <input
+                type="text"
+                value={this.state.cliente.nome}
+                onChange={this.handleChange}
+              />
+            </label>
+          </div>
+          <div>
+            <button type="submit">Adicionar cliente</button>
+          </div>
+        </form>
       </div>
     );
   }
