@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +41,12 @@ public class Cliente {
 
     @NotNull
     private String uf;
+
+    @NotNull
+    private String usuario;
+
+    @NotNull
+    private LocalDateTime dataHoraInclusao;
 
     @OneToMany(cascade = CascadeType.ALL)
     @Size(min = 1)

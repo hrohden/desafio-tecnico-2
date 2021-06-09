@@ -1,11 +1,13 @@
 package br.com.surittec.desafio.clientes;
 
+import br.com.surittec.desafio.auth.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -27,6 +29,9 @@ public class ClienteController {
 
     @PostMapping
     public Cliente incluir(@RequestBody Cliente cliente) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        cliente.setUsuario(user.getUsername());
+        cliente.setDataHoraInclusao(LocalDateTime.now());
         return repository.save(cliente);
     }
 
