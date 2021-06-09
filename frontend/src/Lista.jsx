@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 
 export default class Lista extends Component {
-  static propTypes = {
-    prop: PropTypes,
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -46,11 +41,7 @@ export default class Lista extends Component {
     return (
       <div>
         <div>Lista de clientes...</div>
-        {this.state.isLoaded && (
-          <p>
-            {this.state.items[0].nome}
-          </p>
-        )}
+        {this.state.isLoaded && <p>{this.state.items[0].nome}</p>}
       </div>
     );
   }
