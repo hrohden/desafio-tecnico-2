@@ -38,13 +38,41 @@ export default class Lista extends Component {
       );
   }
 
+  remover = (id) => {
+    fetch("http://localhost:3000/api/clientes/" + id, {
+      method: "delete",
+      headers: new Headers({
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBdXRlbnRpY2HDp8OjbyIsImlhdCI6MTYyMzI2MDgwMiwiZXhwIjoxNjIzMzQ3MjAyLCJzdWIiOiJhZG1pbiJ9.2NKHtgmfjn368BiZfaPKFD6I8NQwMd4jfOdHFBGNOMU",
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result,
+          });
+        },
+        // Nota: É importante lidar com os erros aqui
+        // em vez de um bloco catch() para não recebermos
+        // exceções de erros dos componentes.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  }
+
   render() {
     return (
       <div>
         <div>Lista de clientes...</div>
         {this.state.isLoaded && (<ul>
           {this.state.items.map((item) => (
-            <li key={item.id}>{ item.nome } ({ item.id }) - <Link to={"/editar/" + item.id}>Editar</Link></li>
+            <li key={item.id}>{ item.nome } ({ item.id }) - <Link to={"/editar/" + item.id}>Editar</Link> - <button onClick={() => this.remover(item.id)}>Remover</button></li>
           ))}
         </ul>)}
       </div>

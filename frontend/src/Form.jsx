@@ -11,7 +11,6 @@ export default class Form extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.cliente.id);
     const body = {
       id: this.state.cliente.id,
       nome: this.state.cliente.nome,
