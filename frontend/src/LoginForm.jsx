@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login } from "./operacoes";
+import { login, saveLocalStorage } from "./operacoes";
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -15,10 +15,7 @@ export default class LoginForm extends Component {
     e.preventDefault();
     const body = { ...this.state };
     login(body).then((result) => {
-      this.setState({
-        isLoaded: true,
-        items: result,
-      });
+      saveLocalStorage(result.key);
     });
   }
 

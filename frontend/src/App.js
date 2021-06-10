@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Adicionar from "./Adicionar";
 import Home from "./Home";
 import Editar from "./Editar";
+import GuardedRoute from "./GuardedRoute";
+import { hasLocalStorage } from "./operacoes";
 
 function App() {
   return (
@@ -26,13 +28,18 @@ function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/lista">
+          <GuardedRoute path="/lista" auth={hasLocalStorage()}>
             <Lista />
-          </Route>
-          <Route path="/adicionar">
+          </GuardedRoute>
+          <GuardedRoute path="/adicionar" auth={hasLocalStorage()}>
             <Adicionar />
-          </Route>
-          <Route exact path="/editar/:id" render={(props) => <Editar {...props} /> } />
+          </GuardedRoute>
+          <GuardedRoute
+            auth={hasLocalStorage()}
+            exact
+            path="/editar/:id"
+            render={(props) => <Editar {...props} />}
+          />
           <Route path="/">
             <Home />
           </Route>
