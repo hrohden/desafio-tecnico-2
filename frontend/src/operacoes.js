@@ -1,4 +1,4 @@
-const urlBase = "http://localhost:3000/api/clientes/";
+const urlBase = "http://localhost:3000/api";
 
 const headers = new Headers({
   "Content-Type": "application/json",
@@ -11,7 +11,9 @@ export const listar = () => {
 };
 
 export const consultar = (id) => {
-  return fetch(urlBase + id, { headers }).then((res) => res.json());
+  return fetch(urlBase + "/clientes/" + id, { headers }).then((res) =>
+    res.json()
+  );
 };
 
 export const salvar = (body) => {
@@ -23,8 +25,16 @@ export const salvar = (body) => {
 };
 
 export const remover = (id) => {
-  return fetch(urlBase + id, {
+  return fetch(urlBase + "/clientes/" + id, {
     method: "delete",
+    headers: headers,
+  }).then((res) => res.json());
+};
+
+export const login = (body) => {
+  return fetch(urlBase + "/auth", {
+    method: "post",
+    body: JSON.stringify(body),
     headers: headers,
   }).then((res) => res.json());
 };
