@@ -6,6 +6,7 @@ import Home from "./Home";
 import Editar from "./Editar";
 import GuardedRoute from "./GuardedRoute";
 import { hasLocalStorage } from "./operacoes";
+import Sair from "./Sair";
 
 function App() {
   return (
@@ -16,12 +17,21 @@ function App() {
             <li>
               <Link to="/">Início</Link>
             </li>
-            <li>
-              <Link to="/lista">Lista</Link>
-            </li>
+            {hasLocalStorage() && (
+              <li>
+                <Link to="/lista">Lista</Link>
+              </li>
+            )}
+            {hasLocalStorage() && (
             <li>
               <Link to="/adicionar">Adicionar</Link>
             </li>
+            )}
+            {hasLocalStorage() && (
+            <li>
+              <Link to="/logout">Sair</Link>
+            </li>
+            )}
           </ul>
         </nav>
 
@@ -40,6 +50,9 @@ function App() {
             path="/editar/:id"
             render={(props) => <Editar {...props} />}
           />
+          <GuardedRoute path="/logout" auth={hasLocalStorage()}>
+            <Sair />
+          </GuardedRoute>
           <Route path="/">
             <Home />
           </Route>
