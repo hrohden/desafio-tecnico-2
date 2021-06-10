@@ -1,4 +1,5 @@
 const urlBase = "http://localhost:3000/api";
+const localStorageKey = '@surittec-clientes/login';
 
 const headers = new Headers({
   "Content-Type": "application/json",
@@ -7,7 +8,7 @@ const headers = new Headers({
 });
 
 export const listar = () => {
-  return fetch(urlBase, { headers }).then((res) => res.json());
+  return fetch(urlBase + "/clientes/", { headers }).then((res) => res.json());
 };
 
 export const consultar = (id) => {
@@ -38,3 +39,19 @@ export const login = (body) => {
     headers: headers,
   }).then((res) => res.json());
 };
+
+export const saveLocalStorage = (key) => {
+  localStorage.setItem(localStorageKey, key);
+}
+
+export const getLocalStorage = () => {
+  return localStorage.getItem(localStorageKey);
+}
+
+export const removeLocalStorage = () => {
+  localStorage.removeItem(localStorageKey);
+}
+
+export const hasLocalStorage = () => {
+  return !!localStorage.getItem(localStorageKey);
+}
