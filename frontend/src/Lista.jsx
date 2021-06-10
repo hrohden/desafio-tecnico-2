@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { listar } from "./operacoes";
+import { listar, remover } from "./operacoes";
 
 export default class Lista extends Component {
   constructor(props) {
@@ -22,31 +22,12 @@ export default class Lista extends Component {
   }
 
   remover = (id) => {
-    fetch("http://localhost:3000/api/clientes/" + id, {
-      method: "delete",
-      headers: new Headers({
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBdXRlbnRpY2HDp8OjbyIsImlhdCI6MTYyMzI2MDgwMiwiZXhwIjoxNjIzMzQ3MjAyLCJzdWIiOiJhZG1pbiJ9.2NKHtgmfjn368BiZfaPKFD6I8NQwMd4jfOdHFBGNOMU",
-      }),
-    })
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            clientes: result,
-          });
-        },
-        // Nota: É importante lidar com os erros aqui
-        // em vez de um bloco catch() para não recebermos
-        // exceções de erros dos componentes.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
+    remover(id).then((result) => {
+      this.setState({
+        isLoaded: true,
+        clientes: result,
+      });
+    });
   };
 
   render() {
