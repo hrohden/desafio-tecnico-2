@@ -12,6 +12,12 @@ export class AdicionarCliente extends Component {
                 index: 1,
                 email: ''
             }],
+            enderecoCep: '',
+            enderecoLogradouro: '',
+            enderecoBairro: '',
+            enderecoCidade: '',
+            enderecoUf: '',
+            enderecoComplemento: '',
             telefones: [{
                 index: 1,
                 tipo: 'Celular',

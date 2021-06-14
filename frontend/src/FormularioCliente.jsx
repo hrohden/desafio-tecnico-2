@@ -143,7 +143,7 @@ function FormularioCliente(props) {
                             </div>
                             <MaskedInput
                                 mask={[/\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
-                                className="form-control"
+                                className="form-control col-2"
                                 guide={false}
                                 value={enderecoCep}
                                 id="enderecoCep"
