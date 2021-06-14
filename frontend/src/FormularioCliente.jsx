@@ -10,7 +10,7 @@ function FormularioCliente(props) {
 
     const { register, handleSubmit, errors } = useForm()
 
-    const [id, setId] = useState(props.cliente.id ? props.cliente.id : null);
+    const [id] = useState(props.cliente.id ? props.cliente.id : null);
     const [nome, setNome] = useState(props.cliente.nome);
     const [cpf, setCpf] = useState(props.cliente.cpf);
     const [enderecoCep, setEnderecoCep] = useState(props.cliente.enderecoCep);

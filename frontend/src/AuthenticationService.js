@@ -5,12 +5,12 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
 class AuthenticationService {
 
     executeBasicAuthenticationService(username, password) {
-        return axios.get(`/api/basicauth`,
+        return axios.get(`/api/auth`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }
 
     createBasicAuthToken(username, password) {
-        return 'Basic ' + window.btoa(username + ":" + password)
+        return 'Bearer ' + window.btoa(username + ":" + password)
     }
 
     registerSuccessfulLogin(username, password) {
@@ -31,7 +31,7 @@ class AuthenticationService {
     }
 
     hasAdminPrivileges() {
-        return this.getAuthenticatedUser() === 'admin';
+        return !!this.getAuthenticatedUser();
     }
 
     setupAxiosInterceptors(token) {
