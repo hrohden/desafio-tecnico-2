@@ -5,7 +5,7 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
 class AuthenticationService {
 
     executeBasicAuthenticationService(username, password) {
-        return axios.get(`/api/auth`,
+        return axios.post(`/api/auth`,
             { headers: { authorization: this.createBasicAuthToken(username, password) } })
     }
 
