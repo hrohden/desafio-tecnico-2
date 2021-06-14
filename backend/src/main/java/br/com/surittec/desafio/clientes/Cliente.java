@@ -1,5 +1,6 @@
 package br.com.surittec.desafio.clientes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -26,20 +27,26 @@ public class Cliente {
     private String cpf;
 
     @NotNull
+    @JsonProperty("enderecoCep")
     private String cep;
 
     @NotNull
+    @JsonProperty("enderecoLogradouro")
     private String logradouro;
 
+    @JsonProperty("enderecoComplemento")
     private String complemento;
 
     @NotNull
+    @JsonProperty("enderecoBairro")
     private String bairro;
 
     @NotNull
+    @JsonProperty("enderecoCidade")
     private String cidade;
 
     @NotNull
+    @JsonProperty("enderecoUf")
     private String uf;
 
     @NotNull

@@ -15,5 +15,6 @@ public class Telefone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String numero;
+    private String ddd;
     private String tipo;
 }

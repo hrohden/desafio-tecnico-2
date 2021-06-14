@@ -1,5 +1,6 @@
 package br.com.surittec.desafio.clientes;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -18,5 +19,6 @@ public class Email {
 
     @NotNull
     @javax.validation.constraints.Email
+    @JsonProperty("email")
     private String endereco;
 }

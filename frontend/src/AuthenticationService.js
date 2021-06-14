@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
+export const TOKEN_SESSION_ATTRIBUTE_NAME = 'authenticatedToken';
 
 class AuthenticationService {
 
@@ -15,18 +16,17 @@ class AuthenticationService {
 
     registerSuccessfulLogin(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
+        sessionStorage.setItem(TOKEN_SESSION_ATTRIBUTE_NAME, token);
         this.setupAxiosInterceptors(this.createBearerAuthToken(token));
     }
 
     isUserLoggedIn() {
-        let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
-        if (user === null) return false
-        return true
+        return !!sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
     }
 
     getAuthenticatedUser() {
         if (this.isUserLoggedIn()) {
-            return sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+            return sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
         }
     }
 
@@ -46,6 +46,7 @@ class AuthenticationService {
     logout() {
         axios.post('/api/logout')
         sessionStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+        sessionStorage.removeItem(TOKEN_SESSION_ATTRIBUTE_NAME)
     }
 }
 
