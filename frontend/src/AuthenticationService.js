@@ -5,17 +5,17 @@ export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser';
 class AuthenticationService {
 
     executeBasicAuthenticationService(username, password) {
-        return axios.post(`/api/auth`,
-            { headers: { authorization: this.createBasicAuthToken(username, password) } })
+        return axios
+          .post(`/api/auth`, { username, password });
     }
 
-    createBasicAuthToken(username, password) {
-        return 'Bearer ' + window.btoa(username + ":" + password)
+    createBearerAuthToken(token) {
+        return 'Bearer ' + token;
     }
 
-    registerSuccessfulLogin(username, password) {
+    registerSuccessfulLogin(username, token) {
         sessionStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username);
-        this.setupAxiosInterceptors(this.createBasicAuthToken(username, password));
+        this.setupAxiosInterceptors(this.createBearerAuthToken(token));
     }
 
     isUserLoggedIn() {

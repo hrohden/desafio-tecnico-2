@@ -30,8 +30,8 @@ export class LoginComponent extends Component {
     loginClicked() {
         AuthenticationService
             .executeBasicAuthenticationService(this.state.username, this.state.password)
-            .then(() => {
-                AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+            .then((response) => {
+                AuthenticationService.registerSuccessfulLogin(this.state.username, response.key);
                 this.props.history.push('/')
             }).catch(() => {
                 this.setState({ showSuccessMessage: false })
