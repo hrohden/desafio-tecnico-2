@@ -20,6 +20,7 @@ import { faIdCard } from '@fortawesome/free-solid-svg-icons'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { Helmet } from 'react-helmet';
 
 library.add(fas,
   faCheck,
@@ -38,6 +39,10 @@ class App extends React.Component {
 
   render() {
     return (
+      <div className="App">
+      <Helmet>
+        <title>Surittec | Cadastro de Clientes</title>
+      </Helmet>
       <div>
         <Router>
           <>
@@ -59,6 +64,7 @@ class App extends React.Component {
           </>
         </Router>
       </div>
+    </div>
     );
   }
 }
